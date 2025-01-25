@@ -1,4 +1,4 @@
-// sg-pubsub/pkg/clientlib/brokerpubsublib/client.go
+// sg-brokerpubsub/pkg/clientlib/brokerpubsublib/client.go
 package brokerpubsublib
 
 import (
@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 	"time"
 
 	validation "github.com/go-ozzo/ozzo-validation/v4"
@@ -55,7 +56,7 @@ func NewClient(baseURL string, token string, apiKey string, httpClient ...*http.
 			panic("PUBSUB_BASE_URL must be set either in the environment or as a parameter")
 		}
 	}
-	
+
 	var client *http.Client
 	if len(httpClient) > 0 {
 		client = httpClient[0]
