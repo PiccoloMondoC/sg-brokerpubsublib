@@ -1,5 +1,5 @@
-// sg-brokerpubsub/pkg/clientlib/brokerpubsublib/client.go
-package brokerpubsublib
+// ge-pubsub/pkg/clientlib/pubsublib/client.go
+package pubsublib
 
 import (
 	"bytes"
@@ -7,10 +7,9 @@ import (
 	"fmt"
 	"io"
 	"net/http"
-	"os"
 	"time"
 
-	validation "github.com/go-ozzo/ozzo-validation/v4"
+	validation "github.com/go-ozzo/ozzo-validation"
 )
 
 type Client struct {
@@ -49,14 +48,6 @@ type Message struct {
 }
 
 func NewClient(baseURL string, token string, apiKey string, httpClient ...*http.Client) *Client {
-	// If baseURL is empty, try fetching from the environment
-	if baseURL == "" {
-		baseURL = os.Getenv("PUBSUB_BASE_URL")
-		if baseURL == "" {
-			panic("PUBSUB_BASE_URL must be set either in the environment or as a parameter")
-		}
-	}
-
 	var client *http.Client
 	if len(httpClient) > 0 {
 		client = httpClient[0]
