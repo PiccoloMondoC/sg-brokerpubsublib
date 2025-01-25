@@ -1,1 +1,1 @@
-# sg-brokerpubsublib
+# sg-pubsublib
